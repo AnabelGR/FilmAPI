@@ -1,6 +1,6 @@
 # Movie API
 
-#### An Epicodus independent project in Javascript and API building, 06.29.17
+#### An Epicodus 2-day project in Javascript and API building, 06.29.17
 
 #### **By Pete Lazuran and Anabel Ramirez**
 

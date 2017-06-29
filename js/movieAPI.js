@@ -19,11 +19,21 @@ Movie.prototype.list = function(movie, displayName){
     allMovies.push(newMovie);
 
   }
-  console.log(allMovies[0]);
+  // console.log(allMovies[0]);
   displayName(allMovies);
   });
 };
 
+Movie.prototype.getAll = function(idData, displayAll){
+  $.get('https://api.themoviedb.org/3/movie/' + idData + '?api_key=' + apiKey).then(function(response){
+    console.log(JSON.stringify(response));
+    displayAll(response.overview, response.poster_path, response.release_date, response.runtime, response.title);
+  }).fail(function(error) {
+    $('#showAll').text(error.responseJSON.message);
+  });
+};
+
+exports.movieModule = Movie;
 
 // Movie.prototype.getName = function(movie, displayName) {
 //   $.get('https://api.themoviedb.org/3/search/movie?api_key='+apiKey + '&query=' + movie).then(function(response) {
@@ -35,19 +45,9 @@ Movie.prototype.list = function(movie, displayName){
 //   });
 // };
 //
-Movie.prototype.getAll = function(idData, displayAll){
-  $.get('https://api.themoviedb.org/3/movie/' + idData + '?api_key=' + apiKey).then(function(response){
-    console.log(JSON.stringify(response));
-    displayAll(response.overview, response.poster_path, response.release_date, response.runtime, response.title);
-  }).fail(function(error) {
-    $('#showAll').text(error.responseJSON.message);
-  });
-};
 
 
 
-
-exports.movieModule = Movie;
 
 
 // console.log(JSON.stringify(response.results[0].title));
